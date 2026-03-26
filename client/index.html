@@ -1,0 +1,36 @@
+<div id="container">
+    <div class="label">Имя персонажа</div>
+    <input type="text" id="portraitName" value="рокусама">
+
+    <div class="label">Текст диалога</div>
+    <textarea id="dialogueText" rows="4">Привет! Говна наебни олух.</textarea>
+
+    <div class="label">Скорость (кадров на букву)</div>
+    <input type="number" id="speed" value="20" min="1">
+
+    <div class="label">Цвет имени</div>
+    <input type="color" id="nameColor" value="#ffffff">
+
+    <div class="label">Цвет текста</div>
+    <input type="color" id="textColor" value="#ffffff">
+
+    <div class="label">Цвет фона</div>
+    <input type="color" id="bgColor" value="#000000">
+
+    <div class="label">Шрифт</div>
+    <input type="text" id="fontFamily" value="Arial">
+
+    <div class="label">Размер шрифта</div>
+    <input type="number" id="fontSize" value="40">
+    
+    <div class="label">ВАЖНО</div>
+    <h2>Перед тем как сгенерировать!</h2>
+    <h3>Убедись, что у тебя есть звук в проекте blip.wav</h3>
+    <h3>А также есть картинка персонажа в формате "имя_персонажа". оно берёт картинку от имени.</h3>
+
+    <button id="createBtn">Сгенерировать диалог</button>
+</div>
+
+<script src="./lib/CSInterface.js"></script>
+<script src="main.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
