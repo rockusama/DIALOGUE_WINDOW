@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
         text = text.replace(/\\/g, "\\\\").replace(/"/g, '\\"').replace(/\n/g, "\\n");
 
         var script =
-        'createDialogueAE("' + name + '","' + text + '",' + speed + ',' +
+        'createVNDialogue("' + name + '","' + text + '",' + speed + ',' +
         '[' + nc + '],' +
         '[' + tc + '],' +
         '[' + bc + '],' +
