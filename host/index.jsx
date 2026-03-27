@@ -5,7 +5,6 @@ function createVNDialogue(name, text, speed, nameColor, textColor, bgColor, font
 
         app.beginUndoGroup("VN Dialogue");
 
-        // === Создаём новую композицию ===
         var compName = "dial." + name;
         var compWidth = 1920;
         var compHeight = 1080;
@@ -21,7 +20,6 @@ function createVNDialogue(name, text, speed, nameColor, textColor, bgColor, font
         bg.inPoint = startTime;
         bg.outPoint = compDuration;
 
-        // === Контроллер скорости ===
         var ctrl = comp.layers.addNull();
         ctrl.name = "VN CTRL";
         var speedCtrl = ctrl.property("ADBE Effect Parade").addProperty("ADBE Slider Control");
@@ -30,7 +28,6 @@ function createVNDialogue(name, text, speed, nameColor, textColor, bgColor, font
         ctrl.inPoint = startTime;
         ctrl.outPoint = compDuration;
 
-        // === Имя персонажа ===
         var nameLayer = comp.layers.addText(name);
         nameLayer.name = "Name";
         nameLayer.property("Transform").position.setValue([300, compHeight - 180]);
@@ -43,7 +40,6 @@ function createVNDialogue(name, text, speed, nameColor, textColor, bgColor, font
         nameLayer.inPoint = startTime;
         nameLayer.outPoint = compDuration;
 
-        // === Диалоговый текст ===
         var textLayer = comp.layers.addText(text);
         textLayer.name = "Dialogue";
         textLayer.property("Transform").position.setValue([300, compHeight - 130]);
@@ -63,7 +59,6 @@ function createVNDialogue(name, text, speed, nameColor, textColor, bgColor, font
             "chars = Math.min(chars, txt.length);\n" +
             "txt.substr(0,chars);";
 
-        // === Найти blip.wav ===
         var blipItem = null;
         for (var i = 1; i <= proj.numItems; i++) {
             var it = proj.item(i);
@@ -73,19 +68,17 @@ function createVNDialogue(name, text, speed, nameColor, textColor, bgColor, font
             }
         }
 
-        // === Добавить blip с ускорением ===
         if (blipItem) {
             for (var i = 0; i < text.length; i++) {
                 var ch = text[i];
-                if (ch === " " || ch === "\n") continue; // пропустить пробелы
-                var t = startTime + (i / speed); // время появления буквы
+                if (ch === " " || ch === "\n") continue;
+                var t = startTime + (i / speed);
                 var layer = comp.layers.add(blipItem);
                 layer.startTime = t;
                 layer.audioEnabled = true;
             }
         }
 
-        // === Портрет ===
         var portrait = null;
         for (var i = 1; i <= proj.numItems; i++) {
             var it = proj.item(i);
@@ -107,7 +100,6 @@ function createVNDialogue(name, text, speed, nameColor, textColor, bgColor, font
             img.outPoint = compDuration;
         }
 
-        // === Вставляем комп на таймлайн активной композиции ===
         var mainComp = proj.activeItem;
         if (mainComp && mainComp instanceof CompItem) {
             var nestedLayer = mainComp.layers.add(comp);
